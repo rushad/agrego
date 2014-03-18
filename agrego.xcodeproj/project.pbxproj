@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B932C6C18D59BC7004DC20C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */; };
+		2BC10A4718D5E54900132627 /* agNewsTapeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC10A4618D5E54900132627 /* agNewsTapeController.m */; };
+		2BC10A4A18D5E5AA00132627 /* agNewsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC10A4918D5E5AA00132627 /* agNewsViewCell.m */; };
 		5EFEFDCE18D19C2800FB60F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFEFDCD18D19C2800FB60F1 /* Foundation.framework */; };
 		5EFEFDD018D19C2800FB60F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFEFDCF18D19C2800FB60F1 /* CoreGraphics.framework */; };
 		5EFEFDD218D19C2800FB60F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFEFDD118D19C2800FB60F1 /* UIKit.framework */; };
@@ -32,6 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		2BC10A4518D5E54900132627 /* agNewsTapeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agNewsTapeController.h; sourceTree = "<group>"; };
+		2BC10A4618D5E54900132627 /* agNewsTapeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = agNewsTapeController.m; sourceTree = "<group>"; };
+		2BC10A4818D5E5AA00132627 /* agNewsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agNewsViewCell.h; sourceTree = "<group>"; };
+		2BC10A4918D5E5AA00132627 /* agNewsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = agNewsViewCell.m; sourceTree = "<group>"; };
 		5EFEFDCA18D19C2800FB60F1 /* agrego.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = agrego.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFEFDCD18D19C2800FB60F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EFEFDCF18D19C2800FB60F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +119,11 @@
 				5EFEFDDD18D19C2800FB60F1 /* AgrAppDelegate.m */,
 				5EFEFDDF18D19C2800FB60F1 /* Images.xcassets */,
 				5EFEFDD418D19C2800FB60F1 /* Supporting Files */,
+				2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */,
+				2BC10A4518D5E54900132627 /* agNewsTapeController.h */,
+				2BC10A4618D5E54900132627 /* agNewsTapeController.m */,
+				2BC10A4818D5E5AA00132627 /* agNewsViewCell.h */,
+				2BC10A4918D5E5AA00132627 /* agNewsViewCell.m */,
 			);
 			path = agrego;
 			sourceTree = "<group>";
@@ -192,6 +205,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Rushad;
 				TargetAttributes = {
+					5EFEFDC918D19C2800FB60F1 = {
+						DevelopmentTeam = Q7TST28CLD;
+					};
 					5EFEFDE418D19C2800FB60F1 = {
 						TestTargetID = 5EFEFDC918D19C2800FB60F1;
 					};
@@ -222,6 +238,7 @@
 			files = (
 				5EFEFDD818D19C2800FB60F1 /* InfoPlist.strings in Resources */,
 				5EFEFDE018D19C2800FB60F1 /* Images.xcassets in Resources */,
+				2B932C6C18D59BC7004DC20C /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +259,8 @@
 			files = (
 				5EFEFDDA18D19C2800FB60F1 /* main.m in Sources */,
 				5EFEFDDE18D19C2800FB60F1 /* AgrAppDelegate.m in Sources */,
+				2BC10A4A18D5E5AA00132627 /* agNewsViewCell.m in Sources */,
+				2BC10A4718D5E54900132627 /* agNewsTapeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,10 +379,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "agrego/agrego-Prefix.pch";
 				INFOPLIST_FILE = "agrego/agrego-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -373,10 +395,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "agrego/agrego-Prefix.pch";
 				INFOPLIST_FILE = "agrego/agrego-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -440,6 +465,7 @@
 				5EFEFDF818D19C2800FB60F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EFEFDF918D19C2800FB60F1 /* Build configuration list for PBXNativeTarget "agregoTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +474,7 @@
 				5EFEFDFB18D19C2800FB60F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
