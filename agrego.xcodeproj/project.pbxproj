@@ -10,6 +10,13 @@
 		2B932C6C18D59BC7004DC20C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */; };
 		2BC10A4718D5E54900132627 /* agNewsTapeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC10A4618D5E54900132627 /* agNewsTapeController.m */; };
 		2BC10A4A18D5E5AA00132627 /* agNewsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC10A4918D5E5AA00132627 /* agNewsViewCell.m */; };
+		5E7B54D318EEF38100CFC274 /* RFC822Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54CA18EEF38100CFC274 /* RFC822Date.m */; };
+		5E7B54D418EEF38100CFC274 /* RSSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54CC18EEF38100CFC274 /* RSSHeader.m */; };
+		5E7B54D518EEF38100CFC274 /* RSSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54CE18EEF38100CFC274 /* RSSImage.m */; };
+		5E7B54D618EEF38100CFC274 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D018EEF38100CFC274 /* RSSItem.m */; };
+		5E7B54D718EEF38100CFC274 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D218EEF38100CFC274 /* RSSParser.m */; };
+		5E7B54DA18EEF39F00CFC274 /* TestRFC822Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D818EEF39F00CFC274 /* TestRFC822Date.m */; };
+		5E7B54DB18EEF39F00CFC274 /* TestRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D918EEF39F00CFC274 /* TestRSSParser.m */; };
 		5EFEFDCE18D19C2800FB60F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFEFDCD18D19C2800FB60F1 /* Foundation.framework */; };
 		5EFEFDD018D19C2800FB60F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFEFDCF18D19C2800FB60F1 /* CoreGraphics.framework */; };
 		5EFEFDD218D19C2800FB60F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFEFDD118D19C2800FB60F1 /* UIKit.framework */; };
@@ -40,6 +47,18 @@
 		2BC10A4618D5E54900132627 /* agNewsTapeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = agNewsTapeController.m; sourceTree = "<group>"; };
 		2BC10A4818D5E5AA00132627 /* agNewsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agNewsViewCell.h; sourceTree = "<group>"; };
 		2BC10A4918D5E5AA00132627 /* agNewsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = agNewsViewCell.m; sourceTree = "<group>"; };
+		5E7B54C918EEF38100CFC274 /* RFC822Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFC822Date.h; sourceTree = "<group>"; };
+		5E7B54CA18EEF38100CFC274 /* RFC822Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFC822Date.m; sourceTree = "<group>"; };
+		5E7B54CB18EEF38100CFC274 /* RSSHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSHeader.h; sourceTree = "<group>"; };
+		5E7B54CC18EEF38100CFC274 /* RSSHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSHeader.m; sourceTree = "<group>"; };
+		5E7B54CD18EEF38100CFC274 /* RSSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSImage.h; sourceTree = "<group>"; };
+		5E7B54CE18EEF38100CFC274 /* RSSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSImage.m; sourceTree = "<group>"; };
+		5E7B54CF18EEF38100CFC274 /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItem.h; sourceTree = "<group>"; };
+		5E7B54D018EEF38100CFC274 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
+		5E7B54D118EEF38100CFC274 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
+		5E7B54D218EEF38100CFC274 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
+		5E7B54D818EEF39F00CFC274 /* TestRFC822Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRFC822Date.m; sourceTree = "<group>"; };
+		5E7B54D918EEF39F00CFC274 /* TestRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRSSParser.m; sourceTree = "<group>"; };
 		5EFEFDCA18D19C2800FB60F1 /* agrego.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = agrego.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFEFDCD18D19C2800FB60F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EFEFDCF18D19C2800FB60F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,13 +136,23 @@
 			children = (
 				5EFEFDDC18D19C2800FB60F1 /* AgrAppDelegate.h */,
 				5EFEFDDD18D19C2800FB60F1 /* AgrAppDelegate.m */,
-				5EFEFDDF18D19C2800FB60F1 /* Images.xcassets */,
-				5EFEFDD418D19C2800FB60F1 /* Supporting Files */,
 				2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */,
 				2BC10A4518D5E54900132627 /* agNewsTapeController.h */,
 				2BC10A4618D5E54900132627 /* agNewsTapeController.m */,
 				2BC10A4818D5E5AA00132627 /* agNewsViewCell.h */,
 				2BC10A4918D5E5AA00132627 /* agNewsViewCell.m */,
+				5E7B54C918EEF38100CFC274 /* RFC822Date.h */,
+				5E7B54CA18EEF38100CFC274 /* RFC822Date.m */,
+				5E7B54CB18EEF38100CFC274 /* RSSHeader.h */,
+				5E7B54CC18EEF38100CFC274 /* RSSHeader.m */,
+				5E7B54CD18EEF38100CFC274 /* RSSImage.h */,
+				5E7B54CE18EEF38100CFC274 /* RSSImage.m */,
+				5E7B54CF18EEF38100CFC274 /* RSSItem.h */,
+				5E7B54D018EEF38100CFC274 /* RSSItem.m */,
+				5E7B54D118EEF38100CFC274 /* RSSParser.h */,
+				5E7B54D218EEF38100CFC274 /* RSSParser.m */,
+				5EFEFDDF18D19C2800FB60F1 /* Images.xcassets */,
+				5EFEFDD418D19C2800FB60F1 /* Supporting Files */,
 			);
 			path = agrego;
 			sourceTree = "<group>";
@@ -142,6 +171,8 @@
 		5EFEFDEC18D19C2800FB60F1 /* agregoTests */ = {
 			isa = PBXGroup;
 			children = (
+				5E7B54D818EEF39F00CFC274 /* TestRFC822Date.m */,
+				5E7B54D918EEF39F00CFC274 /* TestRSSParser.m */,
 				5EFEFDF218D19C2800FB60F1 /* agregoTests.m */,
 				5EFEFDED18D19C2800FB60F1 /* Supporting Files */,
 			);
@@ -258,9 +289,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EFEFDDA18D19C2800FB60F1 /* main.m in Sources */,
+				5E7B54D318EEF38100CFC274 /* RFC822Date.m in Sources */,
 				5EFEFDDE18D19C2800FB60F1 /* AgrAppDelegate.m in Sources */,
+				5E7B54D618EEF38100CFC274 /* RSSItem.m in Sources */,
 				2BC10A4A18D5E5AA00132627 /* agNewsViewCell.m in Sources */,
 				2BC10A4718D5E54900132627 /* agNewsTapeController.m in Sources */,
+				5E7B54D518EEF38100CFC274 /* RSSImage.m in Sources */,
+				5E7B54D718EEF38100CFC274 /* RSSParser.m in Sources */,
+				5E7B54D418EEF38100CFC274 /* RSSHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +304,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E7B54DA18EEF39F00CFC274 /* TestRFC822Date.m in Sources */,
 				5EFEFDF318D19C2800FB60F1 /* agregoTests.m in Sources */,
+				5E7B54DB18EEF39F00CFC274 /* TestRSSParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
