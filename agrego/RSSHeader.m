@@ -15,10 +15,10 @@
   self = [super init];
   if (self != nil)
   {
-    self.title = [[NSMutableString alloc] init];
-    self.description = [[NSMutableString alloc] init];
-    self.link = [[NSMutableString alloc] init];
-    self.image = [[RSSImage alloc] init];
+    _title = [[NSMutableString alloc] init];
+    _description = [[NSMutableString alloc] init];
+    _link = [[NSMutableString alloc] init];
+    _image = [[RSSImage alloc] init];
   }
   return self;
 }

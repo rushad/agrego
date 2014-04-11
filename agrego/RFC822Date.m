@@ -36,8 +36,8 @@
     {
       NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
       [dateFormatter setDateFormat:[dateFormats objectAtIndex:i]];
-      self.date = [dateFormatter dateFromString:string];
-      if (self.date != nil)
+      _date = [dateFormatter dateFromString:string];
+      if (_date != nil)
         return self;
     }
     

@@ -9,6 +9,7 @@
 #import "RFC822Date.h"
 #import "RSSItem.h"
 #import "RSSParser.h"
+#import "RSSUtil.h"
 
 @interface RSSParser ()
 
@@ -28,24 +29,26 @@
 
 @implementation RSSParser
 
-- (RSSParser*)initWithContent:(NSString*)content
+- (RSSParser*)initWithContent:(NSString*)content delegate:(id)delegate
 {
   self = [super init];
   if (self != nil)
   {
+    self.delegate = delegate;
     NSData* data = [content dataUsingEncoding:NSUTF8StringEncoding];
-    self.parser = [[NSXMLParser alloc] initWithData:data];
+    _parser = [[NSXMLParser alloc] initWithData:data];
     [self initParser];
-    [self.parser parse];
+    [_parser parse];
   }
   return self;
 }
 
-- (RSSParser*)initWithUrl:(NSString*)urlString
+- (RSSParser*)initWithUrl:(NSString*)urlString delegate:(id)delegate
 {
   self = [super init];
   if (self != nil)
   {
+    self.delegate = delegate;
     NSURL* url = [NSURL URLWithString:urlString];
     self.parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [self initParser];
@@ -211,15 +214,20 @@
     RSSItem* item = [[RSSItem alloc] init];
     
     item.category = self.category;
-    item.title = self.title;
+    item.title = [self.title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     item.link = self.link;
-    item.description = self.description;
+    item.description = [RSSUtil normalizeString:self.description];
     item.image = self.image;
     
     RFC822Date* date = [[RFC822Date alloc] initWithString:self.pubDate];
     item.pubDate = date.date;
     
     [self.items addObject:item];
+    
+    if(self.delegate != nil)
+    {
+      [self.delegate foundItem:item];
+    }
   }
   [self tagPop];
 }

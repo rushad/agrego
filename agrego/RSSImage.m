@@ -15,8 +15,8 @@
   self = [super init];
   if (self != nil)
   {
-    self.title = [[NSMutableString alloc] init];
-    self.url = [[NSMutableString alloc] init];
+    _title = [[NSMutableString alloc] init];
+    _url = [[NSMutableString alloc] init];
   }
   return self;
 }

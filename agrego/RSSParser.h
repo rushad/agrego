@@ -7,6 +7,7 @@
 //
 
 #import "RSSHeader.h"
+#include "RSSParserDelegate.h"
 
 #import <Foundation/Foundation.h>
 
@@ -15,7 +16,9 @@
 @property RSSHeader* header;
 @property NSMutableArray* items;
 
-- (RSSParser*)initWithContent:(NSString*)content;
-- (RSSParser*)initWithUrl:(NSString*)url;
+@property (weak) id <RSSParserDelegate> delegate;
+
+- (RSSParser*)initWithContent:(NSString*)content delegate:(id)delegate;
+- (RSSParser*)initWithUrl:(NSString*)url delegate:(id)delegate;
 
 @end
