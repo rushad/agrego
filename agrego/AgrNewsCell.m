@@ -1,14 +1,14 @@
 //
-//  agNewsCellController.m
+//  AgrNewsCell.m
 //  agrego
 //
-//  Created by  Pavel Lasarev on 16/03/14.
+//  Created by Rushad on 4/10/14.
 //  Copyright (c) 2014 Rushad. All rights reserved.
 //
 
-#import "agNewsViewCell.h"
+#import "AgrNewsCell.h"
 
-@implementation agNewsViewCell
+@implementation AgrNewsCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
