@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Rushad. All rights reserved.
 //
 
+#import "AgrDatabase.h"
 #import "AgrNewsCell.h"
 #import "AgrNewsTapeDataSource.h"
 #import "AgrNewsTapeViewController.h"
@@ -15,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tvNewsTape;
 
 @property AgrNewsTapeDataSource* myDataSource;
+@property AgrDatabase* database;
 
 @end
 
@@ -32,10 +34,11 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
+  self.database = [[AgrDatabase alloc] init];
   self.myDataSource = [[AgrNewsTapeDataSource alloc] initWithNewsTapeViewController:self];
   [self.tvNewsTape setDataSource:self.myDataSource];
   [self.myDataSource reloadNews];
-  
 }
 
 @end

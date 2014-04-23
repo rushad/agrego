@@ -12,10 +12,15 @@
 
 @interface RSSHeader : NSObject
 
-@property NSMutableString* title;
-@property NSMutableString* description;
-@property NSMutableString* link;
+@property NSString* link;
+@property NSString* title;
+@property NSString* description;
 
 @property RSSImage* image;
+
+- (RSSHeader*)initWithLink:(NSString*)link
+                     title:(NSString*)title
+               description:(NSString*)description
+                     image:(RSSImage*)image;
 
 @end

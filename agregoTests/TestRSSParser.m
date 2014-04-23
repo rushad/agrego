@@ -18,7 +18,7 @@
 @property NSString* contentWithoutImages;
 @property NSString* contentBad;
 
-@property RSSItem* item;
+@property NSMutableArray* items;
 
 @end
 
@@ -89,6 +89,7 @@
 </rss>\
 ";
   self.contentBad = @"bad content";
+  self.items = [[NSMutableArray alloc] init];
 }
 
 - (void)tearDown
@@ -99,12 +100,14 @@
 
 - (void)foundItem:(RSSItem *)item
 {
-  self.item = item;
+  NSLog(@"foundItem: %@", item);
+  [self.items addObject:item];
 }
 
 - (void)testShouldReadHeaderFields
 {
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithImages delegate:self];
+  [parser parse];
   RSSHeader* header = parser.header;
   NSLog(@"Title: %@", header.title);
   NSLog(@"Description: %@", header.description);
@@ -117,8 +120,9 @@
 - (void)testShouldReadItems
 {
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithImages delegate:self];
-  XCTAssertEqual(1, [parser.items count]);
-  RSSItem* item = [parser.items objectAtIndex:0];
+  [parser parse];
+  XCTAssertEqual(1, [self.items count]);
+  RSSItem* item = [self.items objectAtIndex:0];
   XCTAssertEqualObjects(item.category, @"Наука и техника");
   XCTAssertEqualObjects(item.title, @"Рогозин снимет фильм о самолетах «Сухого»");
   XCTAssertEqualObjects(item.link, @"http://lenta.ru/news/2014/03/28/film/");
@@ -131,6 +135,7 @@
 - (void)testShouldReadHeaderImage
 {
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithImages delegate:self];
+  [parser parse];
   RSSHeader* header = parser.header;
   XCTAssertEqualObjects(header.image.title, @"Lenta.ru");
   XCTAssertEqualObjects(header.image.url, @"http://assets.lenta.ru/small_logo.png");
@@ -139,7 +144,8 @@
 - (void)testShouldReadItemImage
 {
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithImages delegate:self];
-  RSSItem* item = [parser.items objectAtIndex:0];
+  [parser parse];
+  RSSItem* item = [self.items objectAtIndex:0];
   XCTAssertEqualObjects(item.image.title, @"Lenta.ru");
   XCTAssertEqualObjects(item.image.url, @"http://assets.lenta.ru/small_logo.png");
 }
@@ -147,6 +153,7 @@
 - (void)testShouldNotFailIfNoHeaderImage
 {
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithoutImages delegate:self];
+  [parser parse];
   RSSHeader* header = parser.header;
   XCTAssertEqualObjects(header.image.title, @"");
   XCTAssertEqualObjects(header.image.url, @"");
@@ -155,20 +162,24 @@
 - (void)testShouldNotFailIfNoItemImage
 {
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithoutImages delegate:self];
-  RSSItem* item = [parser.items objectAtIndex:0];
+  [parser parse];
+  RSSItem* item = [self.items objectAtIndex:0];
   XCTAssertEqualObjects(item.image.title, @"");
   XCTAssertEqualObjects(item.image.url, @"");
 }
 
 - (void)testShouldRaiseException
 {
-  XCTAssertThrowsSpecificNamed([[RSSParser alloc] initWithContent:self.contentBad delegate:self], NSException, @"RSSBadContent");
+  RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentBad delegate:self];
+  XCTAssertThrowsSpecificNamed([parser parse], NSException, @"RSSBadContent");
 }
 
 - (void)testDelegate
 {
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithImages delegate:self];
-  XCTAssertEqualObjects(self.item.title, @"Рогозин снимет фильм о самолетах «Сухого»");
+  [parser parse];
+  RSSItem* item = self.items[0];
+  XCTAssertEqualObjects(item.title, @"Рогозин снимет фильм о самолетах «Сухого»");
 }
 
 @end

@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		2B932C6C18D59BC7004DC20C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */; };
-		5E7B54D318EEF38100CFC274 /* RFC822Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54CA18EEF38100CFC274 /* RFC822Date.m */; };
+		5E7B54D318EEF38100CFC274 /* AgrDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54CA18EEF38100CFC274 /* AgrDate.m */; };
 		5E7B54D418EEF38100CFC274 /* RSSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54CC18EEF38100CFC274 /* RSSHeader.m */; };
 		5E7B54D518EEF38100CFC274 /* RSSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54CE18EEF38100CFC274 /* RSSImage.m */; };
 		5E7B54D618EEF38100CFC274 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D018EEF38100CFC274 /* RSSItem.m */; };
 		5E7B54D718EEF38100CFC274 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D218EEF38100CFC274 /* RSSParser.m */; };
-		5E7B54DA18EEF39F00CFC274 /* TestRFC822Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D818EEF39F00CFC274 /* TestRFC822Date.m */; };
+		5E7B54DA18EEF39F00CFC274 /* TestAgrDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D818EEF39F00CFC274 /* TestAgrDate.m */; };
 		5E7B54DB18EEF39F00CFC274 /* TestRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B54D918EEF39F00CFC274 /* TestRSSParser.m */; };
+		5E7CCD5E19066CBF002528D7 /* AgrDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CCD5D19066CBF002528D7 /* AgrDatabase.m */; };
+		5E7CCD6019067447002528D7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7CCD5F19067447002528D7 /* libsqlite3.dylib */; };
+		5E7CCD62190693B5002528D7 /* TestAgrDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CCD61190693B5002528D7 /* TestAgrDatabase.m */; };
+		5E7CCD631906A388002528D7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7CCD5F19067447002528D7 /* libsqlite3.dylib */; };
 		5E7E7B9F18F6BD5A000156F0 /* AgrNewsTapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E7B9E18F6BD5A000156F0 /* AgrNewsTapeViewController.m */; };
 		5E7E7BA218F6D868000156F0 /* AgrNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E7BA118F6D868000156F0 /* AgrNewsCell.m */; };
 		5E7E7BA818F6DB9C000156F0 /* AgrNewsTapeDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E7BA718F6DB9C000156F0 /* AgrNewsTapeDataSource.m */; };
@@ -45,8 +49,8 @@
 
 /* Begin PBXFileReference section */
 		2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		5E7B54C918EEF38100CFC274 /* RFC822Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFC822Date.h; sourceTree = "<group>"; };
-		5E7B54CA18EEF38100CFC274 /* RFC822Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFC822Date.m; sourceTree = "<group>"; };
+		5E7B54C918EEF38100CFC274 /* AgrDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgrDate.h; sourceTree = "<group>"; };
+		5E7B54CA18EEF38100CFC274 /* AgrDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgrDate.m; sourceTree = "<group>"; };
 		5E7B54CB18EEF38100CFC274 /* RSSHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSHeader.h; sourceTree = "<group>"; };
 		5E7B54CC18EEF38100CFC274 /* RSSHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSHeader.m; sourceTree = "<group>"; };
 		5E7B54CD18EEF38100CFC274 /* RSSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSImage.h; sourceTree = "<group>"; };
@@ -55,8 +59,12 @@
 		5E7B54D018EEF38100CFC274 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
 		5E7B54D118EEF38100CFC274 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
 		5E7B54D218EEF38100CFC274 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
-		5E7B54D818EEF39F00CFC274 /* TestRFC822Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRFC822Date.m; sourceTree = "<group>"; };
+		5E7B54D818EEF39F00CFC274 /* TestAgrDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAgrDate.m; sourceTree = "<group>"; };
 		5E7B54D918EEF39F00CFC274 /* TestRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRSSParser.m; sourceTree = "<group>"; };
+		5E7CCD5C19066CBF002528D7 /* AgrDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgrDatabase.h; sourceTree = "<group>"; };
+		5E7CCD5D19066CBF002528D7 /* AgrDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgrDatabase.m; sourceTree = "<group>"; };
+		5E7CCD5F19067447002528D7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5E7CCD61190693B5002528D7 /* TestAgrDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAgrDatabase.m; sourceTree = "<group>"; };
 		5E7E7B9D18F6BD5A000156F0 /* AgrNewsTapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgrNewsTapeViewController.h; sourceTree = "<group>"; };
 		5E7E7B9E18F6BD5A000156F0 /* AgrNewsTapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgrNewsTapeViewController.m; sourceTree = "<group>"; };
 		5E7E7BA018F6D868000156F0 /* AgrNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgrNewsCell.h; sourceTree = "<group>"; };
@@ -89,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E7CCD6019067447002528D7 /* libsqlite3.dylib in Frameworks */,
 				5EFEFDD018D19C2800FB60F1 /* CoreGraphics.framework in Frameworks */,
 				5EFEFDD218D19C2800FB60F1 /* UIKit.framework in Frameworks */,
 				5EFEFDCE18D19C2800FB60F1 /* Foundation.framework in Frameworks */,
@@ -99,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E7CCD631906A388002528D7 /* libsqlite3.dylib in Frameworks */,
 				5EFEFDE718D19C2800FB60F1 /* XCTest.framework in Frameworks */,
 				5EFEFDE918D19C2800FB60F1 /* UIKit.framework in Frameworks */,
 				5EFEFDE818D19C2800FB60F1 /* Foundation.framework in Frameworks */,
@@ -130,6 +140,7 @@
 		5EFEFDCC18D19C2800FB60F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E7CCD5F19067447002528D7 /* libsqlite3.dylib */,
 				5EFEFDCD18D19C2800FB60F1 /* Foundation.framework */,
 				5EFEFDCF18D19C2800FB60F1 /* CoreGraphics.framework */,
 				5EFEFDD118D19C2800FB60F1 /* UIKit.framework */,
@@ -149,9 +160,11 @@
 				5E7E7BA118F6D868000156F0 /* AgrNewsCell.m */,
 				5E7E7BA618F6DB9C000156F0 /* AgrNewsTapeDataSource.h */,
 				5E7E7BA718F6DB9C000156F0 /* AgrNewsTapeDataSource.m */,
+				5E7CCD5C19066CBF002528D7 /* AgrDatabase.h */,
+				5E7CCD5D19066CBF002528D7 /* AgrDatabase.m */,
+				5E7B54C918EEF38100CFC274 /* AgrDate.h */,
+				5E7B54CA18EEF38100CFC274 /* AgrDate.m */,
 				2B932C6B18D59BC7004DC20C /* Storyboard.storyboard */,
-				5E7B54C918EEF38100CFC274 /* RFC822Date.h */,
-				5E7B54CA18EEF38100CFC274 /* RFC822Date.m */,
 				5E7B54CB18EEF38100CFC274 /* RSSHeader.h */,
 				5E7B54CC18EEF38100CFC274 /* RSSHeader.m */,
 				5E7B54CD18EEF38100CFC274 /* RSSImage.h */,
@@ -183,9 +196,10 @@
 		5EFEFDEC18D19C2800FB60F1 /* agregoTests */ = {
 			isa = PBXGroup;
 			children = (
-				5E7B54D818EEF39F00CFC274 /* TestRFC822Date.m */,
+				5E7B54D818EEF39F00CFC274 /* TestAgrDate.m */,
 				5E81411018F81F1000273859 /* TestRSSUtil.m */,
 				5E7B54D918EEF39F00CFC274 /* TestRSSParser.m */,
+				5E7CCD61190693B5002528D7 /* TestAgrDatabase.m */,
 				5EFEFDED18D19C2800FB60F1 /* Supporting Files */,
 			);
 			path = agregoTests;
@@ -302,7 +316,8 @@
 			files = (
 				5E7E7BA818F6DB9C000156F0 /* AgrNewsTapeDataSource.m in Sources */,
 				5EFEFDDA18D19C2800FB60F1 /* main.m in Sources */,
-				5E7B54D318EEF38100CFC274 /* RFC822Date.m in Sources */,
+				5E7B54D318EEF38100CFC274 /* AgrDate.m in Sources */,
+				5E7CCD5E19066CBF002528D7 /* AgrDatabase.m in Sources */,
 				5EFEFDDE18D19C2800FB60F1 /* AgrAppDelegate.m in Sources */,
 				5E7B54D618EEF38100CFC274 /* RSSItem.m in Sources */,
 				5E7E7BA218F6D868000156F0 /* AgrNewsCell.m in Sources */,
@@ -318,9 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E7B54DA18EEF39F00CFC274 /* TestRFC822Date.m in Sources */,
+				5E7B54DA18EEF39F00CFC274 /* TestAgrDate.m in Sources */,
 				5E81411118F81F1000273859 /* TestRSSUtil.m in Sources */,
 				5E7B54DB18EEF39F00CFC274 /* TestRSSParser.m in Sources */,
+				5E7CCD62190693B5002528D7 /* TestAgrDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

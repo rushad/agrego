@@ -10,15 +10,18 @@
 
 @implementation RSSHeader
 
-- (RSSHeader*)init
+- (RSSHeader*)initWithLink:(NSString*)link
+                     title:(NSString*)title
+               description:(NSString*)description
+                     image:(RSSImage *)image
 {
   self = [super init];
   if (self != nil)
   {
-    _title = [[NSMutableString alloc] init];
-    _description = [[NSMutableString alloc] init];
-    _link = [[NSMutableString alloc] init];
-    _image = [[RSSImage alloc] init];
+    self.link = link;
+    self.title = title;
+    self.description = description;
+    self.image = image;
   }
   return self;
 }

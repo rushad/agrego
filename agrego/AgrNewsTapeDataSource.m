@@ -8,6 +8,7 @@
 
 #import "AgrNewsCell.h"
 #import "AgrNewsTapeDataSource.h"
+#import "AgrDate.h"
 #import "RSSItem.h"
 #import "RSSParser.h"
 
@@ -16,6 +17,10 @@
 @property (weak) AgrNewsTapeViewController* newsTape;
 
 @property NSMutableArray* rssItems;
+
+@property UIActivityIndicatorView *spinner;
+
+@property NSInvocationOperation* operation;
 
 @end
 
@@ -45,15 +50,14 @@
   cell.title.text = item.title;
   cell.description.text = item.description;
   
-  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:@"dd MMM yyyy HH:mm:ss Z"];
-  cell.pubDate.text = [formatter stringFromDate:item.pubDate];
+  cell.pubDate.text = [[[AgrDate alloc] initWithDate:item.pubDate] toRFC822String];
   
   return cell;
 }
 
 - (void)reloadNews
 {
+
   UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(135,140,50,50)];
   spinner.color = [UIColor blueColor];
   [spinner startAnimating];
@@ -64,12 +68,13 @@
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //    RSSParser* parser = [[RSSParser alloc] initWithUrl:@"http://echo.msk.ru/news/rss-fulltext.xml" delegate:self];
     RSSParser* parser = [[RSSParser alloc] initWithUrl:@"http://lenta.ru/rss" delegate:self];
+    [parser parse];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-      // stop and remove the spinner on the background when done
       [spinner removeFromSuperview];
     });
   });
+
 }
 
 - (void)foundItem:(RSSItem*)item

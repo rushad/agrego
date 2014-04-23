@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RFC822Date : NSObject
+@interface AgrDate : NSObject
 
 @property NSDate* date;
 
-- (RFC822Date*)initWithString:(NSString*)string;
+- (AgrDate*)initWithDate:(NSDate*)date;
+- (AgrDate*)initWithRFC822String:(NSString*)string;
+
+- (NSString*)toRFC822String;
+- (NSString*)toSQLString;
 
 @end

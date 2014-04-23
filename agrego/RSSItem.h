@@ -12,11 +12,18 @@
 
 @interface RSSItem : NSObject
 
+@property NSString* link;
 @property NSString* category;
 @property NSString* title;
-@property NSString* link;
 @property NSString* description;
 @property NSDate* pubDate;
+
 @property RSSImage* image;
 
+- (RSSItem*)initWithLink:(NSString*)link
+                category:(NSString*)category
+                   title:(NSString*)title
+             description:(NSString*)description
+                 pubDate:(NSDate*)pubDate
+                   image:(RSSImage*)image;
 @end

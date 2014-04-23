@@ -10,7 +10,9 @@
 
 @interface RSSImage : NSObject
 
-@property NSMutableString* title;
-@property NSMutableString* url;
+@property NSString* title;
+@property NSString* url;
+
+- (RSSImage*)initWithTitle:(NSString*)title url:(NSString*)url;
 
 @end

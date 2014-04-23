@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Rushad. All rights reserved.
 //
 
-#import "RFC822Date.h"
+#import "AgrDate.h"
 #import "RSSItem.h"
 #import "RSSParser.h"
 #import "RSSUtil.h"
@@ -17,13 +17,19 @@
 
 @property NSXMLParser* parser;
 
+@property NSMutableString* headerLink;
+@property NSMutableString* headerTitle;
+@property NSMutableString* headerDescription;
+@property NSMutableString* headerImageTitle;
+@property NSMutableString* headerImageUrl;
+
 @property NSMutableString* category;
 @property NSMutableString* title;
 @property NSMutableString* link;
 @property NSMutableString* description;
 @property NSMutableString* pubDate;
-
-@property RSSImage* image;
+@property NSMutableString* itemImageTitle;
+@property NSMutableString* itemImageUrl;
 
 @end
 
@@ -38,7 +44,6 @@
     NSData* data = [content dataUsingEncoding:NSUTF8StringEncoding];
     _parser = [[NSXMLParser alloc] initWithData:data];
     [self initParser];
-    [_parser parse];
   }
   return self;
 }
@@ -50,18 +55,25 @@
   {
     self.delegate = delegate;
     NSURL* url = [NSURL URLWithString:urlString];
-    self.parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+    _parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [self initParser];
-    [self.parser parse];
   }
   return self;
+}
+
+- (void)parse
+{
+  [self.parser parse];
 }
 
 - (void)initParser
 {
   self.tagStack = [[NSMutableArray alloc] init];
-  self.header = [[RSSHeader alloc] init];
-  self.items = [[NSMutableArray alloc] init];
+  self.headerLink = [[NSMutableString alloc] init];
+  self.headerTitle = [[NSMutableString alloc] init];
+  self.headerDescription = [[NSMutableString alloc] init];
+  self.headerImageTitle = [[NSMutableString alloc] init];
+  self.headerImageUrl = [[NSMutableString alloc] init];
   [self.parser setDelegate:self];
   [self.parser setShouldProcessNamespaces:NO];
   [self.parser setShouldReportNamespacePrefixes:NO];
@@ -75,7 +87,8 @@
   self.link = [[NSMutableString alloc] init];
   self.description = [[NSMutableString alloc] init];
   self.pubDate = [[NSMutableString alloc] init];
-  self.image = [[RSSImage alloc] init];
+  self.itemImageTitle = [[NSMutableString alloc] init];
+  self.itemImageUrl = [[NSMutableString alloc] init];
 }
 
 - (NSString*)tagAtLevelFromTop:(uint) pos
@@ -115,17 +128,17 @@
 
 - (void)parseHeader:(NSString*)string
 {
-  if ([self.tagTop isEqualToString:@"title"])
+  if([self.tagTop isEqualToString:@"link"])
   {
-    [self.header.title appendString:string];
+    [self.headerLink appendString:string];
+  }
+  else if ([self.tagTop isEqualToString:@"title"])
+  {
+    [self.headerTitle appendString:string];
   }
   else if([self.tagTop isEqualToString:@"description"])
   {
-    [self.header.description appendString:string];
-  }
-  else if([self.tagTop isEqualToString:@"link"])
-  {
-    [self.header.link appendString:string];
+    [self.headerDescription appendString:string];
   }
 }
 
@@ -155,22 +168,29 @@
 
 - (void)parseImage:(NSString*)string
 {
-  RSSImage* image;
+  NSMutableString* title;
+  NSMutableString* url;
   
   if ([[self tagParentParent] isEqualToString:@"channel"])
-    image = self.header.image;
+  {
+    title = self.headerImageTitle;
+    url = self.headerImageUrl;
+  }
   else if([[self tagParentParent] isEqualToString:@"item"])
-    image = self.image;
+  {
+    title = self.itemImageTitle;
+    url = self.itemImageUrl;
+  }
   else
     return;
   
   if ([self.tagTop isEqualToString:@"title"])
   {
-    [image.title appendString:string];
+    [title appendString:string];
   }
   else if([self.tagTop isEqualToString:@"url"])
   {
-    [image.url appendString:string];
+    [url appendString:string];
   }
 }
 
@@ -211,24 +231,25 @@
 {
   if ([[self tagTop] isEqualToString:@"item"])
   {
-    RSSItem* item = [[RSSItem alloc] init];
-    
-    item.category = self.category;
-    item.title = [self.title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-    item.link = self.link;
-    item.description = [RSSUtil normalizeString:self.description];
-    item.image = self.image;
-    
-    RFC822Date* date = [[RFC822Date alloc] initWithString:self.pubDate];
-    item.pubDate = date.date;
-    
-    [self.items addObject:item];
-    
     if(self.delegate != nil)
     {
+      RSSItem* item = [[RSSItem alloc] initWithLink:self.link
+                                           category:self.category
+                                              title:[RSSUtil normalizeString:self.title]
+                                        description:self.description
+                                            pubDate:[[[AgrDate alloc] initWithRFC822String:self.pubDate] date]
+                                              image:[[RSSImage alloc] initWithTitle:self.itemImageTitle url:self.itemImageUrl]];
       [self.delegate foundItem:item];
     }
   }
+  else if ([[self tagTop] isEqualToString:@"channel"])
+  {
+    self.header = [[RSSHeader alloc] initWithLink:self.headerLink
+                                            title:self.headerTitle
+                                      description:self.headerDescription
+                                            image:[[RSSImage alloc] initWithTitle:self.headerImageTitle url:self.headerImageUrl]];
+  }
+  
   [self tagPop];
 }
 

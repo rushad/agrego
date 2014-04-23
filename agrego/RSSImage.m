@@ -10,13 +10,13 @@
 
 @implementation RSSImage
 
-- (RSSImage*)init
+- (RSSImage*)initWithTitle:(NSString*)title url:(NSString*)url
 {
   self = [super init];
   if (self != nil)
   {
-    _title = [[NSMutableString alloc] init];
-    _url = [[NSMutableString alloc] init];
+    self.title = title;
+    self.url = url;
   }
   return self;
 }

@@ -14,11 +14,11 @@
 @interface RSSParser : NSObject<NSXMLParserDelegate>
 
 @property RSSHeader* header;
-@property NSMutableArray* items;
 
 @property (weak) id <RSSParserDelegate> delegate;
 
 - (RSSParser*)initWithContent:(NSString*)content delegate:(id)delegate;
 - (RSSParser*)initWithUrl:(NSString*)url delegate:(id)delegate;
+- (void)parse;
 
 @end
