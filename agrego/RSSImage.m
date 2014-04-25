@@ -21,4 +21,10 @@
   return self;
 }
 
++ (RSSImage*)imageWithTitle:(NSString*)title url:(NSString*)url
+{
+  return [[RSSImage alloc] initWithTitle:title url:url];
+}
+
+
 @end

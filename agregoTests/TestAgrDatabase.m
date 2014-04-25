@@ -75,14 +75,15 @@
   XCTAssertEqual(r, SQLITE_ROW);
 }
 
-- (void)testInsertItemShouldInsertRowIntoTable
+- (void)testAddItemShouldInsertRowIntoTable
 {
   AgrDatabase* db = [[AgrDatabase alloc] initWithDatabaseName:@"test.db"];
+  AgrDate* testDate = [AgrDate agrDateWithRFC822String:@"Fri, 28 Mar 2014 10:14:31 +0400"];
   RSSItem* item = [[RSSItem alloc] initWithLink:@"link"
                                        category:@"category"
                                           title:@"title"
                                     description:@"description"
-                                        pubDate:[[[AgrDate alloc] initWithRFC822String:@"Fri, 28 Mar 2014 10:14:31 +0400"] date]
+                                        pubDate:testDate.date
                                           image:[[RSSImage alloc] initWithTitle:@"image title" url:@"image url"]];
 
   [db addItem:item];
@@ -94,11 +95,28 @@
   NSString* query = @"SELECT * FROM News";
   sqlite3_prepare(dbSql, [query UTF8String], [query length] + 1, &stmt, nil);
   int r = sqlite3_step(stmt);
+
+  NSString* link = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 0)];
+  NSString* category = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 1)];
+  NSString* title = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 2)];
+  NSString* description = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 3)];
+  AgrDate* pubDate = [AgrDate agrDateWithSQLString:[NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 4)]];
+  NSString* imageTitle = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 5)];
+  NSString* imageUrl = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 6)];
+
   sqlite3_finalize(stmt);
+  
   XCTAssertEqual(r, SQLITE_ROW);
+  XCTAssertEqualObjects(link, @"link");
+  XCTAssertEqualObjects(category, @"category");
+  XCTAssertEqualObjects(title, @"title");
+  XCTAssertEqualObjects(description, @"description");
+  XCTAssertEqualObjects(pubDate.date, testDate.date);
+  XCTAssertEqualObjects(imageTitle, @"image title");
+  XCTAssertEqualObjects(imageUrl, @"image url");
 }
 
-- (void)testInsertItemShouldAvoidDuplication
+- (void)testAddItemShouldAvoidDuplication
 {
   AgrDatabase* db = [[AgrDatabase alloc] initWithDatabaseName:@"test.db"];
   RSSItem* item = [[RSSItem alloc] initWithLink:@"link"
@@ -124,7 +142,7 @@
   XCTAssertEqual(rows, 1);
 }
 
-- (void)testInsertItemWithNilShouldNotInsertRows
+- (void)testAddItemWithNilShouldNotInsertRows
 {
   AgrDatabase* db = [[AgrDatabase alloc] initWithDatabaseName:@"test.db"];
 
@@ -139,6 +157,60 @@
   int r = sqlite3_step(stmt);
   sqlite3_finalize(stmt);
   XCTAssertEqual(r, SQLITE_DONE);
+}
+
+- (void)testGetItem
+{
+  AgrDatabase* db = [[AgrDatabase alloc] initWithDatabaseName:@"test.db"];
+  AgrDate* testDate = [AgrDate agrDateWithRFC822String:@"Fri, 28 Mar 2014 10:14:31 +0400"];
+  RSSItem* testItem = [[RSSItem alloc] initWithLink:@"link"
+                                       category:@"category"
+                                          title:@"title"
+                                    description:@"description"
+                                        pubDate:testDate.date
+                                          image:[[RSSImage alloc] initWithTitle:@"image title" url:@"image url"]];
+  
+  [db addItem:testItem];
+
+  RSSItem* item = [db getItem:0];
+  
+  XCTAssertEqualObjects(item.link, @"link");
+  XCTAssertEqualObjects(item.category, @"category");
+  XCTAssertEqualObjects(item.title, @"title");
+  XCTAssertEqualObjects(item.description, @"description");
+  XCTAssertEqualObjects(item.pubDate, testDate.date);
+  XCTAssertEqualObjects(item.image.title, @"image title");
+  XCTAssertEqualObjects(item.image.url, @"image url");
+}
+
+- (void)testGetItemNShouldReadItemN
+{
+  AgrDatabase* db = [[AgrDatabase alloc] initWithDatabaseName:@"test.db"];
+  AgrDate* testDate = [AgrDate agrDateWithRFC822String:@"Fri, 28 Mar 2014 10:14:31 +0400"];
+  RSSItem* testItem = [[RSSItem alloc] initWithLink:@"link0"
+                                           category:@"category"
+                                              title:@"title"
+                                        description:@"description"
+                                            pubDate:testDate.date
+                                              image:[[RSSImage alloc] initWithTitle:@"image title" url:@"image url"]];
+  
+  [db addItem:testItem];
+
+  testItem.link = @"link1";
+  [db addItem:testItem];
+  
+  testItem.link = @"link2";
+  [db addItem:testItem];
+
+  RSSItem* item = [db getItem:1];
+  
+  XCTAssertEqualObjects(item.link, @"link1");
+  XCTAssertEqualObjects(item.category, @"category");
+  XCTAssertEqualObjects(item.title, @"title");
+  XCTAssertEqualObjects(item.description, @"description");
+  XCTAssertEqualObjects(item.pubDate, testDate.date);
+  XCTAssertEqualObjects(item.image.title, @"image title");
+  XCTAssertEqualObjects(item.image.url, @"image url");
 }
 
 @end

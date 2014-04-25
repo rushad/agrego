@@ -53,19 +53,43 @@
   return nil;
 }
 
+- (AgrDate*)initWithSQLString:(NSString *)string
+{
+  NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+  [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+  NSDate* date = [dateFormatter dateFromString:string];
+  return [self initWithDate:date];
+}
+
++ (AgrDate*)agrDateWithDate:(NSDate*)date
+{
+  return [[AgrDate alloc] initWithDate:date];
+}
+
++ (AgrDate*)agrDateWithRFC822String:(NSString*)string
+{
+  return [[AgrDate alloc] initWithRFC822String:string];
+}
+
++ (AgrDate*)agrDateWithSQLString:(NSString *)string
+{
+  return [[AgrDate alloc] initWithSQLString:string];
+}
 
 - (NSString*)toRFC822String
 {
-  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:@"dd MMM yyyy HH:mm:ss Z"];
-  return [formatter stringFromDate:self.date];
+  NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"dd MMM yyyy HH:mm:ss Z"];
+  return [dateFormatter stringFromDate:self.date];
 }
 
 - (NSString*)toSQLString
 {
-  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-  return [formatter stringFromDate:self.date];
+  NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+  return [dateFormatter stringFromDate:self.date];
 }
 
 @end

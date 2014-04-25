@@ -100,7 +100,6 @@
 
 - (void)foundItem:(RSSItem *)item
 {
-  NSLog(@"foundItem: %@", item);
   [self.items addObject:item];
 }
 
@@ -109,9 +108,6 @@
   RSSParser* parser = [[RSSParser alloc] initWithContent:self.contentWithImages delegate:self];
   [parser parse];
   RSSHeader* header = parser.header;
-  NSLog(@"Title: %@", header.title);
-  NSLog(@"Description: %@", header.description);
-  NSLog(@"Link: %@", header.link);
   XCTAssertEqualObjects(header.title, @"Lenta.ru : Новости");
   XCTAssertEqualObjects(header.description, @"Новости, статьи, фотографии, видео. Семь дней в неделю, 24 часа в сутки");
   XCTAssertEqualObjects(header.link, @"http://lenta.ru");

@@ -24,5 +24,6 @@
 - (AgrDatabase*)initWithDatabaseName:(NSString*)dbName;
 
 - (void)addItem:(RSSItem*)item;
+- (RSSItem*)getItem:(int)row;
 
 @end

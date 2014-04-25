@@ -26,4 +26,12 @@
              description:(NSString*)description
                  pubDate:(NSDate*)pubDate
                    image:(RSSImage*)image;
+
++ (RSSItem*)itemWithLink:(NSString*)link
+                category:(NSString*)category
+                   title:(NSString*)title
+             description:(NSString*)description
+                 pubDate:(NSDate*)pubDate
+                   image:(RSSImage*)image;
+
 @end

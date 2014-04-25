@@ -30,12 +30,12 @@
 
 - (void)testDateWithDayOfWeek
 {
-  NSString* string = @"Fri, 28 Mar 2014 17:14:31 +0400";
+  NSString* string = @"Fri, 28 Mar 2014 17:14:31 +0700";
   AgrDate* rfcDate = [[AgrDate alloc] initWithRFC822String:string];
 
   NSDateFormatter* dateFormatter = [NSDateFormatter new];
   [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-  NSDate* pattern = [dateFormatter dateFromString:@"2014-03-28 17:14:31 +0400"];
+  NSDate* pattern = [dateFormatter dateFromString:@"2014-03-28 17:14:31 +0700"];
   XCTAssertEqualObjects(pattern, rfcDate.date);
 }
 
@@ -57,18 +57,38 @@
 
 - (void)testToString
 {
-  NSDateFormatter* dateFormatter = [NSDateFormatter new];
-  [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-  NSDate* date = [dateFormatter dateFromString:@"2014-03-28 17:14:31 +0400"];
-  AgrDate* rfcDate = [[AgrDate alloc] initWithDate:date];
-  XCTAssertEqualObjects([rfcDate toRFC822String], @"28 Mar 2014 17:14:31 +0400");
+  AgrDate* rfcDate = [[AgrDate alloc] initWithDate:[NSDate date]];
+  NSDateFormatter* rfcDateFormatter = [NSDateFormatter new];
+  [rfcDateFormatter setDateFormat:@"dd MMM yyyy HH:mm:ss Z"];
+  XCTAssertEqualObjects([rfcDate toRFC822String], [rfcDateFormatter stringFromDate:rfcDate.date]);
 }
 
 - (void)testToSqliteString
 {
   NSString* string = @"Fri, 28 Mar 2014 17:14:31 +0400";
   AgrDate* rfcDate = [[AgrDate alloc] initWithRFC822String:string];
-  XCTAssertEqualObjects([rfcDate toSQLString], @"2014-03-28 17:14:31 +0400");
+  XCTAssertEqualObjects([rfcDate toSQLString], @"2014-03-28 13:14:31");
+}
+
+- (void)testAgrDateWithDate
+{
+  NSString* string = @"Fri, 28 Mar 2014 17:14:31 +0700";
+  AgrDate* date = [[AgrDate alloc] initWithRFC822String:string];
+  
+  AgrDate* agrDate = [AgrDate agrDateWithDate:date.date];
+  XCTAssertEqualObjects(date.date, agrDate.date);
+}
+
+- (void)testAgrDateWithRFC822String
+{
+  AgrDate* date = [AgrDate agrDateWithRFC822String:@"Fri, 28 Mar 2014 17:14:31 +0700"];
+  XCTAssertEqualObjects([date toSQLString], @"2014-03-28 10:14:31");
+}
+
+- (void)testAgrDateWithSQLString
+{
+  AgrDate* date = [AgrDate agrDateWithSQLString:@"2014-03-28 10:14:31"];
+  XCTAssertEqualObjects([date toSQLString], @"2014-03-28 10:14:31");
 }
 
 @end

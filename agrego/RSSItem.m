@@ -30,4 +30,19 @@
   return self;
 }
 
++ (RSSItem*)itemWithLink:(NSString*)link
+                category:(NSString*)category
+                   title:(NSString*)title
+             description:(NSString*)description
+                 pubDate:(NSDate*)pubDate
+                   image:(RSSImage*)image
+{
+  return [[RSSItem alloc] initWithLink:link
+                              category:category
+                                 title:title
+                           description:description
+                               pubDate:pubDate
+                                 image:image];
+}
+
 @end

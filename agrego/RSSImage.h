@@ -15,4 +15,6 @@
 
 - (RSSImage*)initWithTitle:(NSString*)title url:(NSString*)url;
 
++ (RSSImage*)imageWithTitle:(NSString*)title url:(NSString*)url;
+
 @end

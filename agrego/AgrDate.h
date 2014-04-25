@@ -14,6 +14,11 @@
 
 - (AgrDate*)initWithDate:(NSDate*)date;
 - (AgrDate*)initWithRFC822String:(NSString*)string;
+- (AgrDate*)initWithSQLString:(NSString*)string;
+
++ (AgrDate*)agrDateWithDate:(NSDate*)date;
++ (AgrDate*)agrDateWithRFC822String:(NSString*)string;
++ (AgrDate*)agrDateWithSQLString:(NSString*)string;
 
 - (NSString*)toRFC822String;
 - (NSString*)toSQLString;
